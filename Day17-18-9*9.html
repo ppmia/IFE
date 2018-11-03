@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>九九乘法表</title>
+        <style>
+            #multiplication {
+                display:table;
+            }
+
+            .tableRow {
+                display:table-row;
+            }
+            .tableCell {
+                display:table-cell;
+            }
+        </style>  
+    </head>
+    <body>
+        <h1>九九乘法表</h1>
+        <table id="onlyTable"></table>
+
+        <script>
+        var m,n;
+        var onlyTable = document.getElementById("onlyTable");
+        function multiTable() {
+            for (m = 1; m <= 9; m++) {
+                var newRow = document.createElement("tr");
+                onlyTable.appendChild(newRow);
+                for (n = 1; n <= m; n++) {
+                    var newCell = document.createElement("td");
+                    newCell.innerHTML = n + '&#215;' + m + '=' + n * m;
+                    newRow.appendChild(newCell);
+                }
+            }
+        }
+        multiTable();
+
+        </script>
+    </body>
+</html>
