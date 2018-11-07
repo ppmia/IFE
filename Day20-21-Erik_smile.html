@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>IFE2016 Erik笑容动画</title>
+        <style>
+            div {
+                width:480px;
+                height:480px;
+                background-image:url('http://ife.baidu.com/2016/static/img/erik_ce204002.jpg');
+                background-attachment:fixed;
+                background-position:0px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+
+        <script>
+            var myDiv = document.querySelector("div");
+            var i = 0;
+            function changePosition(){
+                if (i < 17) {
+                    myDiv.style.backgroundPositionY = -480*i + 'px';console.log(i);
+                } else {
+                    myDiv.style.backgroundPositionY = -480*(32-i) + 'px';
+                }
+                i++;
+                if (i > 32) {
+                    i = 0;
+                }
+                setTimeout(changePosition,80);
+            }
+            window.onload = changePosition;
+        </script>
+
+    </body>
+</html>
