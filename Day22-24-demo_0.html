@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>数字任务</title>
+    </head>
+    <body>
+        <div>
+            <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+            <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+        </div>
+        <div>
+            <button id="demo0">判断当前选中的输入框输入内容是否为数字</button>
+            <button id="demo1">把 A 四舍五入为 B 个小数位数的数字</button>
+            <button id="demo2">当前选中数字的绝对值</button>
+            <button id="demo3">对当前选中的数字进行上舍入</button>
+            <button id="demo4">对当前选中的数字进行下舍入</button>
+            <button id="demo5">把当前选中的数字四舍五入为最接近的整数</button>
+            <button id="demo6">返回 A 和 B 中的最高值</button>
+            <button id="demo7">返回 A 和 B 中的最低值</button>        
+        </div>
+        <p id="result"></p>
+
+        <script>
+            var demo0 = document.getElementById("demo0");
+            var demo1 = document.getElementById("demo1");
+            var demo2 = document.getElementById("demo2");
+            var demo3 = document.getElementById("demo3");
+            var demo4 = document.getElementById("demo4");
+            var demo5 = document.getElementById("demo5");
+            var demo6 = document.getElementById("demo6");
+            var demo7 = document.getElementById("demo7");
+            var result = document.getElementById("result");
+
+            function zero() {
+                var radioA = document.getElementById("radio-a");
+                var numA = document.getElementById("num-a").value;
+                var radioB = document.getElementById("radio-b");
+                var numB = document.getElementById("num-b").value;
+                var reg = /[^0-9]/;
+                if (radioA.checked) {
+                    if (reg.test(numA) === false) {
+                        result.innerHTML = "你填写的是数字";
+                    } else {
+                        result.innerHTML = "Oops！不是数字！";
+                    }
+                } else if (radioB.checked) {
+                    if (reg.test(numB) === false) {
+                        result.innerHTML = "你填写的是数字";
+                    } else {
+                        result.innerHTML = "Oops！不是数字！";
+                    }
+                }
+            }
+            demo0.onclick = zero;
+            
+            function one() {
+                var radioA = document.getElementById("radio-a");
+                var numA = Number(document.getElementById("num-a").value);
+                var radioB = document.getElementById("radio-b");
+                var numB = Number(document.getElementById("num-b").value);
+                var numberFixed = numA.toFixed(numB);
+                result.innerHTML = numberFixed;
+            }
+            demo1.onclick = one;
+
+            function two() {
+                var radioA = document.getElementById("radio-a");
+                var numA = Number(document.getElementById("num-a").value);
+                var radioB = document.getElementById("radio-b");
+                var numB = Number(document.getElementById("num-b").value);
+                if (radioA.checked) {
+                    var absolute =Math.abs(numA);
+                    result.innerHTML = absolute;
+                }
+                if (radioB.checked) {
+                    var absolute =Math.abs(numB);
+                    result.innerHTML = absolute;
+                }
+            }
+            demo2.onclick = two;
+
+            function three() {
+                var radioA = document.getElementById("radio-a");
+                var numA = Number(document.getElementById("num-a").value);
+                var radioB = document.getElementById("radio-b");
+                var numB = Number(document.getElementById("num-b").value);
+                if (radioA.checked) {
+                    var numSelected =Math.ceil(numA);
+                    result.innerHTML = numSelected;
+                }
+                if (radioB.checked) {
+                    var numSelected =Math.ceil(numB);
+                    result.innerHTML = numSelected;
+                }
+            }
+            demo3.onclick = three;
+
+            function four() {
+                var radioA = document.getElementById("radio-a");
+                var numA = Number(document.getElementById("num-a").value);
+                var radioB = document.getElementById("radio-b");
+                var numB = Number(document.getElementById("num-b").value);
+                if (radioA.checked) {
+                    var numSelected =Math.floor(numA);
+                    result.innerHTML = numSelected;
+                }
+                if (radioB.checked) {
+                    var numSelected =Math.floor(numB);
+                    result.innerHTML = numSelected;
+                }
+            }
+            demo4.onclick = four;
+
+            function five() {
+                var radioA = document.getElementById("radio-a");
+                var numA = Number(document.getElementById("num-a").value);
+                var radioB = document.getElementById("radio-b");
+                var numB = Number(document.getElementById("num-b").value);
+                if (radioA.checked) {
+                    var numSelected =Math.round(numA);
+                    result.innerHTML = numSelected;
+                }
+                if (radioB.checked) {
+                    var numSelected =Math.round(numB);
+                    result.innerHTML = numSelected;
+                }
+            }
+            demo5.onclick = five;
+
+            function six() {
+                var numA = Number(document.getElementById("num-a").value);
+                var numB = Number(document.getElementById("num-b").value);
+                if (numA > numB) {
+                    result.innerHTML = numA;
+                } else {
+                    result.innerHTML = numB;
+                }
+            }
+            demo6.onclick = six;
+
+            function seven() {
+                var numA = Number(document.getElementById("num-a").value);
+                var numB = Number(document.getElementById("num-b").value);
+                if (numA > numB) {
+                    result.innerHTML = numB;
+                } else {
+                    result.innerHTML = numA;
+                }
+            }
+            demo7.onclick = seven;
+        </script>
+    </body>
+</html>
