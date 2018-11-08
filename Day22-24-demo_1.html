@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>字符串方法</title>
+    </head>
+    <body>
+        <div>
+            <label>String A:
+                <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+            </label>
+            <textarea id="str-a"></textarea>
+            <label>String B:
+                <input id="radio-b" type="radio" name="str-obj" value="b">
+            </label>
+            <textarea id="str-b"></textarea>        
+            <label>Num A：<input id="num-a" type="number" value="0"></label>
+            <label>Num B：<input id="num-b" type="number" value="1"></label>
+        </div>
+        <div>
+            <button id="btn0">获取当前选中输入的内容长度</button>
+            <button id="btn1">当前选中输入中的第3个字符</button>
+            <button id="btn2">把两个输入框的文字连接在一起输出（concat）</button>
+            <button id="btn3">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+            <button id="btn4">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+            <button id="btn5">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+            <button id="btn6">当前选中输入框的行数</button>
+            <button id="btn7">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+            <button id="btn8">把所选输入框中的内容全部转为大写</button>
+            <button id="btn9">把所选输入框中的内容全部转为小写</button>
+            <button id="btn10">把所选输入框中内容的半角空格全部去除</button>
+            <button id="btn11">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+        </div>
+        <p id="result"></p>  
+        
+        <script>
+            var radioA = document.getElementById("radio-a");
+            var radioB = document.getElementById("radio-b");
+            var result = document.getElementById("result");
+            var btn0 = document.getElementById("btn0");
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            var btn3 = document.getElementById("btn3");
+            var btn4 = document.getElementById("btn4");
+            var btn5 = document.getElementById("btn5");
+            var btn6 = document.getElementById("btn6");
+            var btn7 = document.getElementById("btn7");
+            var btn8 = document.getElementById("btn8");
+            var btn9 = document.getElementById("btn9");
+            var btn10 = document.getElementById("btn10");
+            var btn11 = document.getElementById("btn11");
+
+            function zero() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var len = strA.value.length;
+                    result.innerHTML = len;
+                } else if (radioB.checked) {
+                    var len = strB.value.length;
+                    result.innerHTML = len;
+                }
+            }
+            btn0.onclick = zero;
+
+            function one() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var letter = strA.value[2];
+                    result.innerHTML = letter;
+                } else if (radioB.checked) {
+                    var letter = strB.value[2];
+                    result.innerHTML = letter;
+                }
+            }
+            btn1.onclick = one;
+
+            function two() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                /*
+                var together = strA.value+strB.value;
+                result.innerHTML = together;
+                */
+                var arrA = strA.value.split("");
+                var arrB = strB.value.split("");
+                var together = arrA.concat(arrB);
+                var strTogether = together.join("");
+                result.innerHTML = strTogether;
+            }
+            btn2.onclick = two;
+
+            function three() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                var num =strA.value.indexOf(strB.value);
+                result.innerHTML = num;
+            }
+            btn3.onclick = three;
+
+            function four() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                var num =strB.value.lastIndexOf(strA.value);
+                result.innerHTML = num;
+            }
+            btn4.onclick = four;
+
+            function five() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                var numA = document.getElementById("num-a");
+                var numB = document.getElementById("num-b");
+                if (radioA.checked) {
+                    if (numA.value < numB.value) {
+                        var text =strA.value.slice(numA.value,numB.value);
+                    } else if (numA.value > numB.value) {
+                        var text =strA.value.slice(numB.value,numA.value);
+                    } else {
+                        var text =strA.value[numA.value];
+                    }
+                    result.innerHTML = text;
+                } else if (radioB.checked) {
+                    if (numA.value < numB.value) {
+                        var text =strB.value.slice(numA.value,numB.value);
+                    } else if (numA.value > numB.value) {
+                        var text =strB.value.slice(numB.value,numA.value);
+                    } else {
+                        var text =strB.value[numA.value];
+                    }
+                    result.innerHTML = text;
+                }       
+            }
+            btn5.onclick = five;
+
+            function six() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var len = strA.value.split("\n").length;
+                    result.innerHTML = len;
+                } else if (radioB.checked) {
+                    var len = strB.value.split("\n").length;
+                    result.innerHTML = len;
+                }
+            }
+            btn6.onclick = six;
+
+            function seven() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                var numA = document.getElementById("num-a");
+                var numB = document.getElementById("num-b");
+                if (radioA.checked) {
+                    var sub = strA.value.substr(numA.value,numB.value);
+                    result.innerHTML = sub;
+                } else if (radioB.checked) {
+                    var sub = strB.value.substr(numA.value,numB.value);
+                    result.innerHTML = sub;
+                }
+            }
+            btn7.onclick = seven;
+
+            function eight() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var upper = strA.value.toUpperCase();
+                    result.innerHTML = upper;
+                } else if (radioB.checked) {
+                    var upper = strB.value.toUpperCase();
+                    result.innerHTML = upper;
+                }
+            }
+            btn8.onclick = eight;
+
+            function nine() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var lower = strA.value.toLowerCase();
+                    result.innerHTML = lower;
+                } else if (radioB.checked) {
+                    var lower = strB.value.toLowerCase();
+                    result.innerHTML = lower;
+                }
+            }
+            btn9.onclick = nine;
+
+            function ten() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var arr = strA.value.split(" ");
+                    var str = arr.join('');
+                    result.innerHTML = str;
+                } else if (radioB.checked) {
+                    var arr = strB.value.split(" ");
+                    var str = arr.join('');
+                    result.innerHTML = str;
+                }
+            }
+            btn10.onclick = ten;
+            
+            function eleven() {
+                var strA = document.getElementById("str-a");
+                var strB = document.getElementById("str-b");
+                if (radioA.checked) {
+                    var s = strB.value;
+                    strA.value = s;
+                } else if (radioB.checked) {
+                    var s = strA.value;
+                    strB.value = s;
+                }
+            }
+            btn11.onclick = eleven;            
+        </script>
+    </body>
+</html>
