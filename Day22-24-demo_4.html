@@ -1,0 +1,50 @@
+<!DOCTYPE html></body>
+<html>
+    <head>
+	    <title>demo_4</title>
+    </head>
+    <body>
+        <input id="queue-input" type="text">
+        <p id="queue-cont">队列内容：apple-&gt;pear</p>    
+        <button id="in-btn">入队</button>
+        <button id="out-btn">出队</button>
+        <button id="font-btn">打印队头元素内容</button>
+        <button id="empty-btn">判断队列是否为空</button>
+
+        <script>
+            var queue = ["apple","pear"];
+            var queueInput = document.getElementById("queue-input");
+            var queueCont = document.getElementById("queue-cont");
+            var in_btn = document.getElementById("in-btn");
+            var out_btn = document.getElementById("out-btn");
+            var font_btn = document.getElementById("font-btn");
+            var empty_btn = document.getElementById("empty-btn");
+
+            in_btn.onclick = function() {
+                queue.push(queueInput.value);
+                var str = queue.join("-&gt;");
+                queueCont.innerHTML = "队列内容：" + str;
+            }
+
+            out_btn.onclick = function() {
+                queue.pop();
+                var str = queue.join("-&gt;");
+                queueCont.innerHTML = "队列内容：" + str;
+            }
+
+            font_btn.onclick = function() {
+                var fontbtn = queue[queue.length - 1];
+                queueCont.innerHTML = fontbtn;
+            }
+
+            empty_btn.onclick = function() {
+                var len = queue.length;
+                if (len == 0) {
+                    queueCont.innerHTML = "队列为空";
+                } else {
+                    queueCont.innerHTML = queue;
+                }
+            }
+        </script>
+    </body>
+</html>
