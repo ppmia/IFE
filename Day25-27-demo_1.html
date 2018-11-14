@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Date对象学习</title>
+        <meta charset="utf-8">
+        <script>
+            function timetime() {
+                var txt = document.getElementById("clock");
+                var t = new Date();
+                var Y = t.getFullYear();
+                var M = t.getMonth();
+                var D = t.getDate();
+                var w = t.getDay();
+                var h = t.getHours();
+                var m = t.getMinutes();
+                var s = t.getSeconds();
+
+                function checkWeekday() {
+                    var weekday = new Array(7);
+                    weekday[0] = "Sunday";
+                    weekday[1] = "Monday";
+                    weekday[2] = "Tuesday";
+                    weekday[3] = "Wednesday";
+                    weekday[4] = "Thursday";
+                    weekday[5] = "Friday";
+                    weekday[6] = "Saturday";
+                    return weekday[w];
+                }
+                w = checkWeekday(w);
+
+                var half;
+                function halfday() {
+                    if (h < 12) {
+                        half = 'AM';
+                    } else if (h == 12) {
+                        half = 'PM';
+                    } else  {
+                        half = 'PM';
+                        h = h - 12;
+                    }
+                    return half,h;    
+                }
+                halfday(h);
+                
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
+                Y = checkTime(Y);
+                M = checkTime(M);
+                D = checkTime(D);
+                h = checkTime(h);
+                m = checkTime(m);
+                s = checkTime(s);
+
+                
+
+                txt.innerHTML = Y + "-" + M + "-" + D + "&nbsp;" + w + "&nbsp;" + h + ":" + m + ":" + s + "&nbsp;" + half;
+                ok = setTimeout('timetime()',500);
+            }
+            window.onload = timetime;
+        </script>
+    </head>
+    <body>
+        <p id="clock"></p>
+    </body>
+</html>
+        

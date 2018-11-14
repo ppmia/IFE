@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Date对象学习</title>
+        <meta charset="utf-8">
+        <script>
+            function timetime() {
+                var txt = document.getElementById("clock");
+                var t = new Date();
+                var Y = t.getFullYear();
+                var M = t.getMonth();
+                var D = t.getDate();
+                var w = t.getDay();
+                var h = t.getHours();
+                var m = t.getMinutes();
+                var s = t.getSeconds();
+
+                function checkWeekday() {
+                    var weekday = new Array(7);
+                    weekday[0] = "星期日";
+                    weekday[1] = "星期一";
+                    weekday[2] = "星期二";
+                    weekday[3] = "星期三";
+                    weekday[4] = "星期四";
+                    weekday[5] = "星期五";
+                    weekday[6] = "星期六";
+                    return weekday[w];
+                }
+                w = checkWeekday(w);
+                
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
+                Y = checkTime(Y);
+                M = checkTime(M);
+                D = checkTime(D);
+                h = checkTime(h);
+                m = checkTime(m);
+                s = checkTime(s);
+
+                txt.innerHTML = Y + "年" + M + "月" + D + "日" + w + h + ":" + m + ":" + s;
+                ok = setTimeout('timetime()',500);
+            }
+            window.onload = timetime;
+        </script>
+    </head>
+    <body>
+        <p id="clock"></p>
+    </body>
+</html>
+        

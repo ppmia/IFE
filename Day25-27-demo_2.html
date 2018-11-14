@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Date对象学习</title>
+        <meta charset="utf-8">
+        <script>
+            function timetime() {
+                var txtCh = document.getElementById("ch");
+                var txtEn = document.getElementById("en");
+                var t = new Date();
+                var Y = t.getFullYear();
+                var M = t.getMonth();
+                var D = t.getDate();
+                var wCh = t.getDay();
+                var wEn = t.getDay();
+                var h = t.getHours();
+                var m = t.getMinutes();
+                var s = t.getSeconds();
+
+                function checkWeekdayCh(x) {
+                    var weekdayCh = new Array(7);
+                    weekdayCh[0] = "星期日";
+                    weekdayCh[1] = "星期一";
+                    weekdayCh[2] = "星期二";
+                    weekdayCh[3] = "星期三";
+                    weekdayCh[4] = "星期四";
+                    weekdayCh[5] = "星期五";
+                    weekdayCh[6] = "星期六";
+                    return weekdayCh[x];
+                }
+                wCh = checkWeekdayCh(wCh);
+
+                function checkWeekdayEn(x) {
+                    var weekdayEn = new Array(7);
+                    weekdayEn[0] = "Sunday";
+                    weekdayEn[1] = "Monday";
+                    weekdayEn[2] = "Tuesday";
+                    weekdayEn[3] = "Wednesday";
+                    weekdayEn[4] = "Thursday";
+                    weekdayEn[5] = "Friday";
+                    weekdayEn[6] = "Saturday";
+                    return weekdayEn[x];
+                }
+                wEn = checkWeekdayEn(wEn);
+
+                var half;
+                function halfday() {
+                    if (h < 12) {
+                        half = 'AM';
+                    } else if (h == 12) {
+                        half = 'PM';
+                    } else  {
+                        half = 'PM';
+                        h = h - 12;
+                    }
+                    return half,h;    
+                }
+                halfday(h);
+                
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
+                Y = checkTime(Y);
+                M = checkTime(M);
+                D = checkTime(D);
+                h = checkTime(h);
+                m = checkTime(m);
+                s = checkTime(s);
+
+                txtCh.innerHTML = Y + "年" + M + "月" + D + "日" + wCh + (Number(h) + 12) + ":" + m + ":" + s;
+                txtEn.innerHTML = Y + "-" + M + "-" + D + "&nbsp;" + wEn + "&nbsp;" + h + ":" + m + ":" + s + "&nbsp;" + half;
+                ok = setTimeout('timetime()',500);
+            }
+            window.onload = timetime;
+        </script>
+    </head>
+    <body>
+        <p id="ch"></p>
+        <p id="en"></p>
+    </body>
+</html>
+        
